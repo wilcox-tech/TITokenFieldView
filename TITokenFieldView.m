@@ -150,8 +150,8 @@ CGFloat const kSeparatorHeight = 1;
 }
 
 - (void)layoutSubviews {
-	
-	CGFloat relativeFieldHeight = tokenField.frame.size.height - self.contentOffset.y;
+	[super layoutSubviews];
+	CGFloat relativeFieldHeight = MIN(tokenField.frame.size.height - self.contentOffset.y, 159);
 	[resultsTable setHeight:(self.frame.size.height - relativeFieldHeight)];
 }
 
@@ -631,7 +631,7 @@ typedef void (^AnimationBlock)();
 			[self setHeight:newHeight];
 		};
 		
-		if (previousHeight < newHeight){
+		if (previousHeight < newHeight && NO){
 			[UIView animateWithDuration:0.3 animations:^{animationBlock();}];
 		}
 		else
